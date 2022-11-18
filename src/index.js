@@ -70,16 +70,17 @@ async function getSitesWithDelay(iDisplayStart, iDisplayLength) {
     setTimeout(async () => {
       const sites = await getSites(iDisplayStart, iDisplayLength);
       resolve(sites);
-    }, 3000);
+    }, 1000);
   });
 }
 
 async function getFullSites() {
-  for (let i = 99; i < 100; i += 1) {
+  for (let i = 0; i < 100; i += 1) {
     console.log(`Iteration ${i} started`);
     const sites = await getSitesWithDelay(i * 100000, 100000);
     const data = sites.reduce((acc, site) => {
-      const siteStr = `${site.rank};${site.domain};${site.openPageRank};${site.extension}\n`;
+      // const siteStr = `${site.rank};${site.domain};${site.openPageRank};${site.extension}\n`;
+      const siteStr = `${site.domain}\n`;
       return acc + siteStr;
     }, '');
     const filePath = path.join(__dirname, 'data.txt');
