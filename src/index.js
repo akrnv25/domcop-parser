@@ -68,7 +68,7 @@ async function getSites(iDisplayStart, iDisplayLength) {
 async function getSitesWithDelay(iDisplayStart, iDisplayLength) {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
-      const sites = await getSites(i * 100000, 100000);
+      const sites = await getSites(iDisplayStart, iDisplayLength);
       resolve(sites);
     }, 3000);
   });
