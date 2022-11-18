@@ -75,7 +75,7 @@ async function getSitesWithDelay(iDisplayStart, iDisplayLength) {
 }
 
 async function getFullSites() {
-  for (let i = 0; i < 99; i += 1) {
+  for (let i = 99; i < 100; i += 1) {
     console.log(`Iteration ${i} started`);
     const sites = await getSitesWithDelay(i * 100000, 100000);
     const data = sites.reduce((acc, site) => {
