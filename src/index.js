@@ -65,10 +65,19 @@ async function getSites(iDisplayStart, iDisplayLength) {
   });
 }
 
+async function getSitesWithDelay(iDisplayStart, iDisplayLength) {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      const sites = await getSites(i * 100000, 100000);
+      resolve(sites);
+    }, 3000);
+  });
+}
+
 async function getFullSites() {
   for (let i = 0; i < 99; i += 1) {
     console.log(`Iteration ${i} started`);
-    const sites = await getSites(i * 100000, 100000);
+    const sites = await getSitesWithDelay(i * 100000, 100000);
     const data = sites.reduce((acc, site) => {
       const siteStr = `${site.rank};${site.domain};${site.openPageRank};${site.extension}\n`;
       return acc + siteStr;
